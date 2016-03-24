@@ -3,6 +3,7 @@ package edu.utdallas.cs6301_502;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.ArrayAccess;
 import org.eclipse.jdt.core.dom.Assignment;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.IVariableBinding;
@@ -31,6 +32,7 @@ public class UnusedVisitor extends ASTVisitor {
 
 	private boolean inLHS = false;
 	private boolean inQualifier = false;
+	private boolean inArrayAccess = false;
 	
 	public HashMap<String, VarFieldInfo> varRead;
 	
@@ -123,8 +125,19 @@ public class UnusedVisitor extends ASTVisitor {
 //	}
 
 
-
-
+	@Override
+	public boolean visit(ArrayAccess node) {
+		inArrayAccess = true;
+		
+		return super.visit(node);
+	}
+	
+	@Override
+	public void endVisit(ArrayAccess node) {
+		inArrayAccess = false;
+	}
+	
+	
 	@Override
 	public boolean visit(QualifiedName node) {
 		if (inQualifier)
@@ -147,7 +160,7 @@ public class UnusedVisitor extends ASTVisitor {
 	@Override
 	public boolean visit(SimpleName node) {
 
-		if (!inLHS || inQualifier)
+		if (!inLHS || inQualifier || inArrayAccess)
 		{
 			debug("SimpleName: Key: " + node.resolveBinding().getKey());
 			if (varRead.containsKey(node.resolveBinding().getKey()))
@@ -208,6 +221,7 @@ public class UnusedVisitor extends ASTVisitor {
 		// Use the package declaration as a place to init
 		inLHS = false;
 		inQualifier = false;
+		inArrayAccess = false;
 		return super.visit(node);
 	}
 
