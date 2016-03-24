@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IProject"
+            id="Assignment4Plugin.contribution1">
+         <menu
+               label="Assignment4"
+               path="additions"
+               id="Assignment4Plugin.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Analyze"
+               class="assignment4plugin.popup.actions.NewAction"
+               menubarPath="Assignment4Plugin.menu1/group1"
+               enablesFor="1"
+               id="Assignment4Plugin.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
