@@ -2,15 +2,10 @@ package edu.utdallas.cs6301_502;
 
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
-import java.util.List;
-
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.Assignment;
 import org.eclipse.jdt.core.dom.CompilationUnit;
-import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.IVariableBinding;
-import org.eclipse.jdt.core.dom.MethodDeclaration;
-import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.QualifiedName;
 import org.eclipse.jdt.core.dom.SimpleName;
@@ -162,11 +157,15 @@ public class UnusedVisitor extends ASTVisitor {
 			}
 			else
 			{
+				if (node.resolveBinding() instanceof IVariableBinding)
+				{
 				VarFieldInfo info = new VarFieldInfo(true);
-				int modifiers = info.varBinding.getModifiers(); 
-				if (!info.varBinding.isField() || Modifier.isPrivate(modifiers))
+				IVariableBinding binding = (IVariableBinding) node.resolveBinding();
+				int modifiers = binding.getModifiers(); 
+				if (!binding.isField() || Modifier.isPrivate(modifiers))
 				{
 					varRead.put(node.resolveBinding().getKey(), info);
+				}
 				}
 			}
 		}
@@ -184,8 +183,9 @@ public class UnusedVisitor extends ASTVisitor {
 		if (!varRead.containsKey(node.getName().resolveBinding().getKey()))
 		{
 			VarFieldInfo info = new VarFieldInfo(binding, cu.getLineNumber(node.getStartPosition()));
-			int modifiers = info.varBinding.getModifiers(); 
-			if (!info.varBinding.isField() || Modifier.isPrivate(modifiers))
+
+			int modifiers = binding.getModifiers();  
+			if (!binding.isField() || Modifier.isPrivate(modifiers))
 			{
 				varRead.put(node.getName().resolveBinding().getKey(), info);
 			}

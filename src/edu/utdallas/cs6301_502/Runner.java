@@ -135,7 +135,6 @@ public class Runner {
 					String type = "variable";
 					if (info.varBinding.isField()) {type = "field";}
 					findings.append("* The [" + type + "] ["+ info.varBinding.getName() + "] is declared but never read in the code (line:[" + info.lineNumber + "])" + System.lineSeparator());
-					System.out.println();
 				}
 			}
 		}
@@ -143,7 +142,7 @@ public class Runner {
 		if (somethingUnread)
 		{
 			System.out.println("File: " + source.getPath());
-			System.out.println(findings.toString());
+			System.out.print(findings.toString());
 		}
 		
 	}
