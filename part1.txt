@@ -1,0 +1,41 @@
+Field: LOGGER
+Field: INSTANCE
+Field: caseSensitiveSearch
+Field: regExpSearch
+Field: tree
+Field: query
+Field: operator
+Field: fieldPattern
+Field: valuePattern
+Field: caseSensitive
+Field: regex
+Field: entry
+M: syntaxError(recognizer:Recognizer<?,?>, offendingSymbol:Object, line:int, charPositionInLine:int, msg:String, e:RecognitionException)
+M: GrammarBasedSearchRule(caseSensitiveSearch:boolean, regExpSearch:boolean)
+M: isValid(caseSensitive:boolean, regExp:boolean, query:String)
+M: isCaseSensitiveSearch()
+M: isRegExpSearch()
+M: getTree()
+M: getQuery()
+M: init(query:String)
+V: lexer:SearchLexer
+V: parser:SearchParser
+M: applyRule(query:String, bibEntry:BibEntry)
+M: validateSearchStrings(query:String)
+M: build(value:String)
+M: Comparator(field:String, value:String, operator:ComparisonOperator, caseSensitive:boolean, regex:boolean)
+V: option:int
+M: compare(entry:BibEntry)
+V: fieldsKeys:Set<String>
+V: matchedFieldKeys:List<String>
+M: matchFieldKey()
+M: matchFieldValue(content:String)
+V: matcher:Matcher
+M: BibtexSearchVisitor(caseSensitive:boolean, regex:boolean, bibEntry:BibEntry)
+M: comparison(field:String, operator:ComparisonOperator, value:String)
+M: visitStart(ctx:SearchParser.StartContext)
+M: visitComparison(ctx:SearchParser.ComparisonContext)
+V: right:String
+M: visitUnaryExpression(ctx:SearchParser.UnaryExpressionContext)
+M: visitParenExpression(ctx:SearchParser.ParenExpressionContext)
+M: visitBinaryExpression(ctx:SearchParser.BinaryExpressionContext)
