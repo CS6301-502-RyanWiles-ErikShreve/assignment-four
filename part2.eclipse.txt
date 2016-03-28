@@ -1,0 +1,92 @@
+File: /org.eclipse.jdt.apt.core/src/com/sun/mirror/type/MirroredTypeException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[47])
+File: /org.eclipse.jdt.apt.core/src/com/sun/mirror/type/MirroredTypesException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[51])
+File: /org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/NonEclipseImplementationException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[19])
+File: /org.eclipse.jdt.apt.core/src/org/eclipse/jdt/apt/core/internal/util/ManyToMany.java
+* The [field] [_reverse] is declared but never read in the code (line:[41])
+* The [field] [_forward] is declared but never read in the code (line:[40])
+* The [field] [_dirty] is declared but never read in the code (line:[42])
+File: /org.eclipse.jdt.apt.pluggable.tests/src/org/eclipse/jdt/apt/pluggable/tests/processors/modeltester/ModelTesterProc.java
+* The [field] [_processingEnv] is declared but never read in the code (line:[84])
+File: /org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/exceptionhandling/ExceptionHandlingProcessor.java
+* The [variable] [arrValue] is declared but never read in the code (line:[44])
+* The [variable] [strValue] is declared but never read in the code (line:[43])
+* The [variable] [booleanValue] is declared but never read in the code (line:[42])
+* The [variable] [enumsValue] is declared but never read in the code (line:[45])
+File: /org.eclipse.jdt.apt.tests/src/org/eclipse/jdt/apt/tests/annotations/mirrortest/MirrorUtilTestAnnotationProcessor.java
+* The [variable] [type_J] is declared but never read in the code (line:[98])
+* The [variable] [type_EnvTestClass] is declared but never read in the code (line:[92])
+File: /org.eclipse.jdt.compiler.apt/src/org/eclipse/jdt/internal/compiler/apt/util/ManyToMany.java
+* The [field] [_forward] is declared but never read in the code (line:[39])
+* The [field] [_dirty] is declared but never read in the code (line:[41])
+* The [field] [_reverse] is declared but never read in the code (line:[40])
+File: /org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/complete/InvalidCursorLocation.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[27])
+File: /org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/complete/CompletionNodeFound.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[24])
+File: /org.eclipse.jdt.core/codeassist/org/eclipse/jdt/internal/codeassist/select/SelectionNodeFound.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[19])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/core/compiler/InvalidInputException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[22])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/classfmt/ClassFormatException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[46])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/flow/UnconditionalFlowInfo.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[40])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/lookup/SourceTypeCollisionException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[16])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/AbortMethod.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[24])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/AbortCompilation.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[35])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/ShouldNotImplement.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[20])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/AbortType.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[24])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/problem/AbortCompilationUnit.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[26])
+File: /org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/util/Messages.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[29])
+File: /org.eclipse.jdt.core/eval/org/eclipse/jdt/internal/eval/InstallException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[19])
+File: /org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/AbortFormatting.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[22])
+File: /org.eclipse.jdt.core/formatter/org/eclipse/jdt/internal/formatter/align/AlignmentException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[23])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/core/BufferChangedEvent.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[60])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/core/JavaModelException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[38])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/core/ElementChangedEvent.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[86])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/core/jdom/DOMException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[25])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/core/util/ClassFormatException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[38])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/internal/compiler/parser/SourceTypeConverter.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[59])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/ClasspathEntry.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[74])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/DeltaProcessor.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[1537])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/builder/ImageBuilderInternalException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[21])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/builder/MissingSourceFileException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[19])
+File: /org.eclipse.jdt.core/model/org/eclipse/jdt/internal/core/builder/AbortIncrementalBuildException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[21])
+File: /org.eclipse.jdt.core/search/org/eclipse/jdt/internal/core/search/matching/MatchLocator.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[167])
+File: /org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/compiler/regression/NullReferenceImplTransformations.java
+* The [variable] [gotProblem] is declared but never read in the code (line:[2128])
+File: /org.eclipse.jdt.core.tests.compiler/src/org/eclipse/jdt/core/tests/runtime/TargetException.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[18])
+File: /org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/Semaphore.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[22])
+File: /org.eclipse.jdt.core.tests.model/src/org/eclipse/jdt/core/tests/model/OptionTests.java
+* The [field] [serialVersionUID] is declared but never read in the code (line:[788])
+* The [field] [serialVersionUID] is declared but never read in the code (line:[775])
+File: /org.eclipse.jdt.core.tests.performance/src/org/eclipse/jdt/core/tests/performance/util/View.java
+* The [variable] [seriesKey] is declared but never read in the code (line:[40])
+* The [variable] [scenarioPattern] is declared but never read in the code (line:[38])
