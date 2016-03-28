@@ -5,10 +5,15 @@ import java.util.HashMap;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.ArrayAccess;
 import org.eclipse.jdt.core.dom.Assignment;
+import org.eclipse.jdt.core.dom.BreakStatement;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.ContinueStatement;
 import org.eclipse.jdt.core.dom.IVariableBinding;
+import org.eclipse.jdt.core.dom.ImportDeclaration;
+import org.eclipse.jdt.core.dom.LabeledStatement;
 import org.eclipse.jdt.core.dom.PackageDeclaration;
 import org.eclipse.jdt.core.dom.QualifiedName;
+import org.eclipse.jdt.core.dom.ReturnStatement;
 import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 
@@ -33,6 +38,7 @@ public class UnusedVisitor extends ASTVisitor {
 	private boolean inLHS = false;
 	private boolean inQualifier = false;
 	private boolean inArrayAccess = false;
+	private boolean inReturn = false;
 	
 	public HashMap<String, VarFieldInfo> varRead;
 	
@@ -94,7 +100,7 @@ public class UnusedVisitor extends ASTVisitor {
 		// In the statement a = b = c = d;, The values b and c will not be counted as read.
 		// This works just as Eclipse does.
 		node.getRightHandSide().accept(this);
-	
+		
 		inLHS = true;
 		node.getLeftHandSide().accept(this);
 		inLHS = false;
@@ -127,15 +133,22 @@ public class UnusedVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(ArrayAccess node) {
-		inArrayAccess = true;
+		if (inArrayAccess)
+		{
+			node.getArray().accept(this);
+			node.getIndex().accept(this);
+		}
+		else
+		{
+			inArrayAccess = true;
+			node.getArray().accept(this);
+			node.getIndex().accept(this);			
+			inArrayAccess = false;
+		}
 		
-		return super.visit(node);
+		return false;
 	}
 	
-	@Override
-	public void endVisit(ArrayAccess node) {
-		inArrayAccess = false;
-	}
 	
 	
 	@Override
@@ -157,11 +170,51 @@ public class UnusedVisitor extends ASTVisitor {
 		return false;
 	}
 
+	
+	
+	@Override
+	public boolean visit(ReturnStatement node) {
+		inReturn = true;
+		return super.visit(node);
+	}
+	
+	@Override
+	public void endVisit(ReturnStatement node) {
+		inReturn = false;
+	}
+
+	@Override
+	public boolean visit(LabeledStatement node) {
+		// Skip label's name
+		node.getBody().accept(this);
+		return false;
+	}
+
+	
+	
+	
+	@Override
+	public boolean visit(BreakStatement node) {
+		// Skip possible label in break statement
+		return false;
+	}
+
+	@Override
+	public boolean visit(ContinueStatement node) {
+		// Skip possible label in continue statement
+		return false;
+	}
+
 	@Override
 	public boolean visit(SimpleName node) {
 
-		if (!inLHS || inQualifier || inArrayAccess)
+		if (!inLHS || inQualifier || inArrayAccess || inReturn)
 		{
+			if (node.resolveBinding() == null)
+			{
+				System.out.println("Found null binding: " + node.getStartPosition() + ", " + node.getFullyQualifiedName());
+				return super.visit(node);
+			}
 			debug("SimpleName: Key: " + node.resolveBinding().getKey());
 			if (varRead.containsKey(node.resolveBinding().getKey()))
 			{
@@ -172,13 +225,13 @@ public class UnusedVisitor extends ASTVisitor {
 			{
 				if (node.resolveBinding() instanceof IVariableBinding)
 				{
-				VarFieldInfo info = new VarFieldInfo(true);
-				IVariableBinding binding = (IVariableBinding) node.resolveBinding();
-				int modifiers = binding.getModifiers(); 
-				if (!binding.isField() || Modifier.isPrivate(modifiers))
-				{
-					varRead.put(node.resolveBinding().getKey(), info);
-				}
+					VarFieldInfo info = new VarFieldInfo(true);
+					IVariableBinding binding = (IVariableBinding) node.resolveBinding();
+					int modifiers = binding.getModifiers(); 
+					if (!binding.isField() || Modifier.isPrivate(modifiers))
+					{
+						varRead.put(node.resolveBinding().getKey(), info);
+					}
 				}
 			}
 		}
@@ -193,6 +246,12 @@ public class UnusedVisitor extends ASTVisitor {
 		
 		CompilationUnit cu = (CompilationUnit) node.getRoot();
 
+		if (node.getName().resolveBinding() == null)
+		{
+			System.out.println("Found null binding (VDF): " + node.getName().getFullyQualifiedName());
+			return false;
+		}
+		
 		if (!varRead.containsKey(node.getName().resolveBinding().getKey()))
 		{
 			VarFieldInfo info = new VarFieldInfo(binding, cu.getLineNumber(node.getStartPosition()));
@@ -222,9 +281,19 @@ public class UnusedVisitor extends ASTVisitor {
 		inLHS = false;
 		inQualifier = false;
 		inArrayAccess = false;
-		return super.visit(node);
+		inReturn = false;
+		
+		return false;
 	}
 
+	@Override
+	public boolean visit(ImportDeclaration node) {
+		// Import statements have "names" but we don't care about them.
+		return false;
+	}
+
+	
+	
 
 
 }
