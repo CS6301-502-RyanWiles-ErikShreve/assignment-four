@@ -11,18 +11,14 @@
 // ***************************************************************************
 package edu.utdallas.cs6301_502;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaModel;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
@@ -99,8 +95,8 @@ public class Runner {
 			
 			processProject(r, p);
 
-			System.out.println("Project path: " + p.getResource().getRawLocation().makeAbsolute());
-			p.getResource().getName();
+		//	System.out.println("Project path: " + p.getResource().getRawLocation().makeAbsolute());
+		//	p.getResource().getName();
 			
 			
 			for (CUSourcePair pair : r.compilationUnits)
